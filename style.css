@@ -54,3 +54,33 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /***************************************************/
+
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #a2c8f6;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+ 
+}
+
+.header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(231, 231, 231);
+    padding: 1rem;
+}
+
+
+button.add-book {
+  background-color: rgb(15, 80, 120);
+  color: white;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
