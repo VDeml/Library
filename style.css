@@ -63,7 +63,10 @@ body {
 .wrapper {
     display: flex;
     flex-direction: column;
- 
+}
+
+.wrapper > * {
+    padding: 1rem;
 }
 
 .header {
@@ -71,9 +74,12 @@ body {
     justify-content: space-evenly;
     align-items: center;
     background-color: rgb(231, 231, 231);
-    padding: 1rem;
 }
 
+.content {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+}
 
 button.add-book {
   background-color: rgb(15, 80, 120);
@@ -83,4 +89,28 @@ button.add-book {
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
+}
+
+.bookCard {
+    background-color: tomato;
+    border: solid black 2px;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    padding: 1rem;
+    gap: 10px;
+}
+
+.readStatusBtn {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.readStatusBtn.read {
+    background-color: green;
+}
+
+.readStatusBtn.notRead {
+    background-color: red;
 }

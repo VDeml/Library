@@ -1,40 +1,31 @@
+const myLibrary = [];
+content = document.querySelector(".content");
 
-function Book(title, author, pages, read) {
+function Book(title, author, pageCount, readBool) {
     if(!new.target) {
         throw Error("You must use the 'new' operator to call the constructor");
     }
     this.title = title;
     this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.info = function() {
-        console.log(`${title} by ${author} has ${pages} pages and I ${read} it.`)
-    }
+    this.pageCount = pageCount;
+    this.readBool = readBool;
+    this.id = crypto.randomUUID();
 }
 
-const hobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", "read"); 
-
-const item = {
-    value: 5,
-    string: "yeah"
-}
-/////////////////////////////
-
-function Player(name, marker) {
-  this.name = name;
-  this.marker = marker;
-  this.sayName = function() {
-    console.log(this.name);
-  };
+function addBookToLibrary(title, author, pageCount, readBool) {
+  //take params, create book, store in library array
+  const book = new Book(title, author, pageCount, readBool);
+  myLibrary.push(book);
+  console.log(book);
 }
 
-const player1 = new Player("steve", "X");
-const player2 = new Player("also steve", "O");
+// Just manually adding some books to the array
+addBookToLibrary("Lord Of The Rings", "J.R.R Tolkien", 1178, "yes");
+addBookToLibrary("Deep Work", "Cal Newport", 304, "yes")
 
-Player.prototype.sayHello = function() {
-  console.log("Hello, I'm a player!");
-}; 
-
-/*console.log(Object.getPrototypeOf(player1)) // returns true */
-console.log(player1.valueOf());
-
+// Function for looping over the array, displaying results
+function displayLibrary() {
+  for (book of myLibrary) {
+    
+  }
+};

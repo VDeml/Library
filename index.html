@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My Library</title>
 <script src="script.js"></script>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -11,10 +11,21 @@
     <div class="wrapper">
         <div class="header">
             <H1>My Library</H1>
-            <button class="add-book">Add New Book</button>
+            <button class="add-book" type="submit">Add New Book</button>
         </div>
+        <form>
+            <label for="item">Enter a new book:</label>
+            <input type="text" name="item" id="item" />
+            <button>Add item</button>
+        </form>
         <div class="content">
-            
+            <div class="bookCard">
+                <h3 class="titleRow">Book Title</h3>
+                <p class="authorRow">Book's Author</p>
+                <p class="pageCountRow">350</p>
+                <button class="readStatusBtn read">Yes</button>
+                <button class="removeBook">Remove Book</button>
+            </div>
         </div>
     </div>
 </body>
