@@ -51,23 +51,44 @@ function displayLibrary() {
     newPageCount.textContent = `Page count: ${book.pageCount}`;
     newCard.appendChild(newPageCount);
     //create read/not read button
-    const newReadStatusBtn = document.createElement("button")
-    newReadStatusBtn.classList.add("readStatusBtn")
+    const newReadStatusBtn = document.createElement("button");
+    newReadStatusBtn.classList.add("readStatusBtn");
     if(book.readBool === false) {
-      newReadStatusBtn.textContent = "No"
-      newReadStatusBtn.classList.add("readNo")
+      newReadStatusBtn.textContent = "No";
+      newReadStatusBtn.classList.add("readNo");
     }
     else {
-      newReadStatusBtn.textContent = "Yes"
-      newReadStatusBtn.classList.add("readYes")
-    }  
-    newCard.appendChild(newReadStatusBtn)
+      newReadStatusBtn.textContent = "Yes";
+      newReadStatusBtn.classList.add("readYes");
+    };  
+    newCard.appendChild(newReadStatusBtn);
+    // function for toggling YES/NO on read button
+    newReadStatusBtn.addEventListener("click", () => {
+      if(newReadStatusBtn.classList.contains("readYes")) {
+        newReadStatusBtn.classList.remove("readYes")
+        newReadStatusBtn.classList.add("readNo")
+        newReadStatusBtn.textContent = "No"
+      }
+      else if(newReadStatusBtn.classList.contains("readNo")) {
+        newReadStatusBtn.classList.remove("readNo")
+        newReadStatusBtn.classList.add("readYes")
+        newReadStatusBtn.textContent = "Yes"
+      };
+    });
     //add remove book button to card
     const newRemoveBook = document.createElement("button");
-    newRemoveBook.classList.add("removeBook")
-    newRemoveBook.textContent = "Remove Book"
-    newCard.appendChild(newRemoveBook)
-  }
+    newRemoveBook.classList.add("removeBook");
+    newRemoveBook.textContent = "Remove Book";
+    newCard.appendChild(newRemoveBook);
+    newRemoveBook.addEventListener("click", () => {
+      content.removeChild(newCard);
+    });
+  };
 };
+
+function switchReadBool() {
+
+}
+
 
 displayLibrary();

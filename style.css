@@ -79,7 +79,7 @@ body {
 .content {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-    gap: 1rem;
+    gap: 15px;
 }
 
 button.add-book {
@@ -93,7 +93,7 @@ button.add-book {
 }
 
 .bookCard {
-    background-color: tomato;
+    background-color: rgb(243, 200, 128);
     border: solid black 2px;
     display: flex;
     flex-direction: column;
@@ -109,9 +109,9 @@ button.add-book {
 }
 
 .readStatusBtn.readYes {
-    background-color: green;
+    background-color: rgb(91, 164, 91);
 }
 
 .readStatusBtn.readNo {
-    background-color: red;
+    background-color: rgb(194, 89, 89);
 }
