@@ -11,21 +11,33 @@
     <div class="wrapper">
         <div class="header">
             <H1>My Library</H1>
-            <button class="add-book" type="submit">Add New Book</button>
+            <button class="addBook" type="submit">Add New Book</button>
         </div>
-        <form>
-            <label for="item">Enter a new book:</label>
-            <input type="text" name="item" id="item" />
-            <button>Add item</button>
-        </form>
+        <div class="modal hidden">
+            <form class="bookForm" action="" method="post">
+                <h2>Enter a new book</h2>
+                <label for="titleInput">Title:</label>
+                <input type="text" name="titleInput" id="titleInput" placeholder="War and Peace" required/>
+                <label for="authorInput">Author:</label>
+                <input type="text" name="authorInput" id="authorInput" placeholder="Lev Nikolajevič Tolstoj" required/>
+                <label for="pagesInput">Number of pages:</label>
+                <input type="number" name="pagesInput" id="pagesInput" placeholder="1200" required/>
+                <h3>Have you read it?</h3>
+                <div class="radioRow">
+                    <label for="readInputYes">Yes</label>
+                    <input type="radio" name="readInput" id="readInputYes" value="Yes" required/>
+                </div>
+                <div class="radioRow">
+                    <label for="readInputNo">No</label>
+                    <input type="radio" name="readInput" id="readInputNo" value="" required/>
+                </div>    
+                <div class="formButtonsRow">
+                    <button class="formSubmit">Add book to library</button>
+                    <button class="formCancel" type="reset">Cancel</button>
+                </div>
+            </form>
+        </div>
         <div class="content">
-            <div class="bookCard">
-                <h3 class="titleRow">Book Title</h3>
-                <p class="authorRow">Book's Author</p>
-                <p class="pageCountRow">350</p>
-                <button class="readStatusBtn readYes">Yes</button>
-                <button class="removeBook">Remove Book</button>
-            </div>
         </div>
     </div>
 </body>
