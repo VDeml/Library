@@ -1,9 +1,9 @@
-const myLibrary = [];
-content = document.querySelector(".content");
-addBookBtn = document.querySelector(".addBook");
-modal = document.querySelector(".modal");
-cancelBtn = document.querySelector(".formCancel")
-submitBtn = document.querySelector(".formSubmit")
+let myLibrary = [];
+const content = document.querySelector(".content");
+const addBookBtn = document.querySelector(".addBook");
+const modal = document.querySelector(".modal");
+const cancelBtn = document.querySelector(".formCancel")
+const submitBtn = document.querySelector(".formSubmit")
 
 function Book(title, author, pageCount, readBool) {
     if(!new.target) {
@@ -13,33 +13,33 @@ function Book(title, author, pageCount, readBool) {
     this.author = author;
     this.pageCount = pageCount;
     this.id = crypto.randomUUID();
-    if(readBool) {
-      this.readBool = true;
-    }
-    else {
-      this.readBool = false;
-    }
+    this.readBool = readBool;
+}
+
+Book.prototype.changeReadStatus = function() {
+  this.readBool = !this.readBool;
 }
 
 function addBookToLibrary(title, author, pageCount, readBool) {
   //take params, create book, store in library array
   const book = new Book(title, author, pageCount, readBool);
   myLibrary.push(book);
-  // console.log(book);
+
 }
 
 // Just manually adding some books to the array
-addBookToLibrary("Lord Of The Rings", "J.R.R Tolkien", 1178, "yes");
-addBookToLibrary("Deep Work", "Cal Newport", 304, "")
+addBookToLibrary("Lord Of The Rings", "J.R.R Tolkien", 1178, true);
+addBookToLibrary("Deep Work", "Cal Newport", 304, false)
 
 // Function for looping over the array, displaying results
 function displayLibrary() {
-  for (book of myLibrary) {
+  for (const book of myLibrary) {
     //create new card to append to .content
     const newCard = document.createElement("div");
     newCard.classList.add("bookCard");
-    content.appendChild(newCard);    // add unique id dataset to book card
-    newCard.dataset.uniqueId = book.id
+    // add unique id dataset to book card
+    newCard.dataset.uniqueId = book.id;
+    content.appendChild(newCard);   
     // create title for card and append
     const newTitle = document.createElement("h2");
     newTitle.classList.add("titleRow");
@@ -58,7 +58,7 @@ function displayLibrary() {
     //create read/not read button and give it correct style class
     const newReadStatusBtn = document.createElement("button");
     newReadStatusBtn.classList.add("readStatusBtn");
-    if(book.readBool == false) {
+    if(!book.readBool) {
       newReadStatusBtn.textContent = "No";
       newReadStatusBtn.classList.add("readNo");
     }
@@ -67,22 +67,12 @@ function displayLibrary() {
       newReadStatusBtn.classList.add("readYes");
     };  
     newCard.appendChild(newReadStatusBtn);
-    // function for toggling YES/NO on read button THIS SHOULDNT BE HERE! This is just a function for printing out the library to the DOM
+    // function for toggling YES/NO on read button
     newReadStatusBtn.addEventListener("click", () => {
-      if(newReadStatusBtn.classList.contains("readYes")) {
-        newReadStatusBtn.classList.remove("readYes")
-        newReadStatusBtn.classList.add("readNo")
-        newReadStatusBtn.textContent = "No"
-        book.readBool = ""
-        console.log(book.readBool)
-      }
-      else if(newReadStatusBtn.classList.contains("readNo")) {
-        newReadStatusBtn.classList.remove("readNo")
-        newReadStatusBtn.classList.add("readYes")
-        newReadStatusBtn.textContent = "Yes"
-        book.readBool = "Yes"
-        console.log(book.readBool)
-      };
+        book.changeReadStatus();
+        // book.readBool = true;
+        destroyContent();
+        displayLibrary();
     });
     //add remove book button to card
     const newRemoveBook = document.createElement("button");
@@ -90,9 +80,11 @@ function displayLibrary() {
     newRemoveBook.textContent = "Remove Book";
     newCard.appendChild(newRemoveBook);
     newRemoveBook.addEventListener("click", () => {
-      content.removeChild(newCard);
+      const currId = newCard.dataset.uniqueId;
+      myLibrary = myLibrary.filter((book) => book.id !== currId);
+      destroyContent();
+      displayLibrary();
     });
-    console.log(book)
   };
 };
 
@@ -107,17 +99,22 @@ cancelBtn.addEventListener("click", () => {
   modal.classList.add("hidden")
 })
 // submit form, add book to library
-submitBtn.addEventListener("click", () => {
+submitBtn.addEventListener("click", (event) => {
   event.preventDefault(); 
-  titleValue = document.getElementById("titleInput").value
-  authorValue = document.getElementById("authorInput").value
-  pagesValue = document.getElementById("pagesInput").value
-  readValue = document.getElementById("readInputYes").checked;
+  const titleValue = document.getElementById("titleInput").value
+  const authorValue = document.getElementById("authorInput").value
+  const pagesValue = Number(document.getElementById("pagesInput").value)
+  const readValue = document.getElementById("readInputYes").checked;
   addBookToLibrary(titleValue, authorValue, pagesValue, readValue);
   // modal.classList.add("hidden");
-  console.log(pagesValue, readValue);
+  destroyContent();
   displayLibrary();
 })
 
+function destroyContent() {
+  while (content.hasChildNodes()) {
+    content.removeChild(content.firstChild);
+  }
+}
 
 displayLibrary();
