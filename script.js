@@ -5,6 +5,8 @@ const modal = document.querySelector(".modal");
 const cancelBtn = document.querySelector(".formCancel")
 const submitBtn = document.querySelector(".formSubmit")
 
+/* OLD Object constructor way
+
 function Book(title, author, pageCount, readBool) {
     if(!new.target) {
         throw Error("You must use the 'new' operator to call the constructor");
@@ -18,6 +20,21 @@ function Book(title, author, pageCount, readBool) {
 
 Book.prototype.changeReadStatus = function() {
   this.readBool = !this.readBool;
+}
+  
+*/
+class Book {
+  constructor(title, author, pageCount, readBool) {
+    this.title = title;
+    this.author = author;
+    this.pageCount = pageCount;
+    this.readBool = readBool;
+    this.id = crypto.randomUUID();
+  }
+
+  changeReadStatus() {
+    this.readBool = !this.readBool;
+  }
 }
 
 function addBookToLibrary(title, author, pageCount, readBool) {
