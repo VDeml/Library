@@ -106,7 +106,7 @@ submitBtn.addEventListener("click", (event) => {
   const pagesValue = Number(document.getElementById("pagesInput").value)
   const readValue = document.getElementById("readInputYes").checked;
   addBookToLibrary(titleValue, authorValue, pagesValue, readValue);
-  // modal.classList.add("hidden");
+  modal.classList.add("hidden");
   destroyContent();
   displayLibrary();
 })
