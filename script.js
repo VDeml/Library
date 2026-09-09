@@ -5,24 +5,7 @@ const modal = document.querySelector(".modal");
 const cancelBtn = document.querySelector(".formCancel")
 const submitBtn = document.querySelector(".formSubmit")
 
-/* OLD Object constructor way
 
-function Book(title, author, pageCount, readBool) {
-    if(!new.target) {
-        throw Error("You must use the 'new' operator to call the constructor");
-    }
-    this.title = title;
-    this.author = author;
-    this.pageCount = pageCount;
-    this.id = crypto.randomUUID();
-    this.readBool = readBool;
-}
-
-Book.prototype.changeReadStatus = function() {
-  this.readBool = !this.readBool;
-}
-  
-*/
 class Book {
   constructor(title, author, pageCount, readBool) {
     this.title = title;
@@ -133,5 +116,54 @@ function destroyContent() {
     content.removeChild(content.firstChild);
   }
 }
+
+// form validation with javascript
+const titleInput = document.querySelector("#titleInput");
+const titleInputError = document.querySelector("#titleInput + span.error")
+
+const authorInput = document.querySelector("#authorInput");
+const authorInputError = document.querySelector("#authorInput + span.error")
+
+const pagesInput = document.querySelector("#pagesInput");
+const pagesInputError = document.querySelector("#pagesInput + span.error")
+
+titleInput.addEventListener("input", (event) => {
+  if(titleInput.validity.valid) {
+    titleInputError.textContent = "";
+    titleInputError.className = "error"
+  }
+  else {
+    inputError(titleInput, titleInputError)
+  }
+});
+
+authorInput.addEventListener("input", (event) => {
+  if(authorInput.validity.valid) {
+    authorInputError.textContent ="";
+    authorInputError.className = "error"
+  }
+  else {
+    inputError(authorInput, authorInputError)
+  }
+});
+
+pagesInput.addEventListener("input", (event) => {
+  if(pagesInput.validity.valid) {
+    pagesInputError.textContent ="";
+    pagesInputError.className = "error"
+  }
+  else {
+    inputError(pagesInput, pagesInputError)
+  }
+});
+
+
+function inputError(inputName, error) {
+  if(inputName.validity.valueMissing) {
+    error.textContent = "Value is missing!"
+  }
+  error.className = "error active"
+}
+
 
 displayLibrary();
