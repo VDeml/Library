@@ -144,3 +144,18 @@ button.addBook {
 .hidden {
     visibility: hidden;
 } 
+
+/* error message styles */
+.error {
+width: 100%;
+padding: 0;
+
+font-size: 80%;
+color: white;   
+background-color: #cd3f3f;
+box-sizing: border-box;
+}
+
+.error.active {
+padding: 0.3em;
+}
